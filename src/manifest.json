@@ -1,0 +1,13 @@
+{
+  "name": "Chrome Sitter",
+  "version": "0.01",
+  "description": "Helps you to sit properly",
+  "chrome_url_overrides":{
+    "newtab": "newtab.html"
+  },
+  "background":{
+    "page": "background.html",
+    "persistent": false
+  },
+  "manifest_version": 2
+}
