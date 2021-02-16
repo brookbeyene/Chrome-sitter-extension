@@ -18,7 +18,7 @@ function App() {
   const runPosenet = async () =>{
     const net = await posenet.load({
       inputResolution:{width: 380, height:240},
-      scale:0.2
+      scale:0.52
     })
     // setInterval
    
@@ -27,7 +27,7 @@ function App() {
         detect(net)
   
     }, 2000)
-    console.log("THis is 00Net00  "+ runPosenet )
+    
     
   }
 
@@ -54,12 +54,61 @@ function App() {
 
       // const xCounter = 4
       // // const xAvg = 0
-      const xFrame = pose["keypoints"][5]["position"]["x"] - pose["keypoints"][6]["position"]["x"]
+      const xFrame = pose["keypoints"][6]["position"]["x"] - pose["keypoints"][5]["position"]["x"]
+      ReactDOM.render(<div style ={{
+            
+            
+        position: "absolute",
+        marginLeft: "auto",
+        marginRight: "auto",
+        left: "0",
+        right: "0",
+        textAlign: "center",
+        zIndex:9,
+        width: 380,
+        height: 240
+      }} > <h1>Good Job </h1>
+      <h2>You are sitting properly...keeeeeep it up!! </h2>
+      <h2>Normal Pose Avg Score  = 17</h2>
       
-
-      
+      <Webcam 
+          ref = {webcamRef}
+          style = {{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: "0",
+            right: "0",
+            textAlign: "center",
+            zIndex:9,
+            width: 380,
+            height: 240
+            
+          }}
+        />
+        <canvas 
+        ref = {canvasRef}
+        style ={{
+                  
+                  position: "absolute",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  left: "0",
+                  right: "0",
+                  textAlign: "center",
+                  zIndex:9,
+                  width: 380,
+                  height: 240
+            }} /><h1></h1>
+  
+      <h2>Your Pose Avg Score = {Math.round(xFrame)}</h2>
+    
+      <Album />
+      <button><a href="https://google.com" class="button">Go to Google</a></button><h1></h1>
+      </div>, document.getElementById('bodyPosing'))
     }
   }
+  
 
   const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
     const ctx = canvas.current.getContext("2d");
@@ -70,7 +119,7 @@ function App() {
     drawSkeleton(pose["keypoints"], 0.7, ctx);
 
   };
-
+  
   runPosenet()
   // function myStopFunction(){
   //   clearInterval(runPosenet())
@@ -78,7 +127,9 @@ function App() {
   // myStopFunction()
   // setInterval(runPosenet(), 10000)
   return (
-    <>
+    <div className="App" id="bodyPosing" >
+      <header className="App-header" id="searchBar">
+    <> 
       <Webcam 
         ref = {webcamRef}
         style = {{
@@ -108,11 +159,12 @@ function App() {
         width: 380, height:240
       }} 
       />
-      <Album props={runPosenet}/>
+      
       </>
       
      
-    
+      </header>
+      </div>
   );
 }
 

@@ -105,7 +105,7 @@ function App() {
           }} > <img src="https://i.pinimg.com/originals/26/d5/79/26d57978063c9901120bfc5ac9b85d1b.jpg" width="250" height="200"/><h1>Good Job </h1>
           <h2>You are sitting properly...keeeeeep it up!! </h2>
           <h2>Normal Pose Avg Score  = 17</h2>
-          <h2>Your Pose Avg Score = {Math.round(yFrame)}</h2>
+          <h2>Your Pose Avg Score = {Math.round(xFrame)}</h2>
           <button><a href="https://google.com" class="button">Go to Google</a></button><h1></h1><Webcam 
           ref = {webcamRef}
           style = {{
